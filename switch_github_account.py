@@ -107,16 +107,25 @@ def change_account():
                 selected_account = accounts[change_index]
                 username = selected_account['username']
                 email = selected_account['email']
+                if selected_account['username'] == current_name and selected_account['email'] == current_email:
+                    print(f"\033[92mThis account is currently in use: {username} ({email})\033[0m")
+                    generate_ssh = input("Do you want to generate an SSH key for this account? (y/n): ").lower()
+                    if generate_ssh in ['y', 'yes']:
+                        generate_ssh_key(email)
+                    else:
+                        print("Returning to the main menu.")
+                        return
+                else:
                 
                 # Set global Git config
-                subprocess.run(['git', 'config', '--global', 'user.name', username])
-                subprocess.run(['git', 'config', '--global', 'user.email', email])
-                print(f"Switched to account: {username} ({email})")
-                
-                # Prompt to generate SSH key
-                generate_ssh = input("Do you want to generate an SSH key for this account? (y/n): ").lower()
-                if generate_ssh in ['y', 'yes']:
-                    generate_ssh_key()
+                    subprocess.run(['git', 'config', '--global', 'user.name', username])
+                    subprocess.run(['git', 'config', '--global', 'user.email', email])
+                    print(f"Switched to account: {username} ({email})")
+                    
+                    # Prompt to generate SSH key
+                    generate_ssh = input("Do you want to generate an SSH key for this account? (y/n): ").lower()
+                    if generate_ssh in ['y', 'yes']:
+                        generate_ssh_key()
             else:
                 print("Invalid index.")
         except ValueError:
@@ -138,8 +147,19 @@ def update_account():
             update_index = int(update_index) - 1
             # update_index = int(input("Enter the index of the account to update: ")) - 1
             if 0 <= update_index < len(accounts):
-                new_username = input("Enter new GitHub username: ")
-                new_email = input("Enter new GitHub email: ")
+                while True:
+                    new_username = input("Enter new GitHub username: ").strip()
+                    if new_username:
+                        break
+                    else:
+                        print("Username cannot be empty. Please try again.")
+                while True:
+                    new_email = input("Enter new GitHub email (must end with @gmail.com): ").strip()
+                    if new_email.endswith('@gmail.com'):
+                        break
+                    else:
+                        print("Invalid email format. Please enter an email ending with @gmail.com.")        
+                    
                 accounts[update_index]['username'] = new_username
                 accounts[update_index]['email'] = new_email
                 with open(accounts_file_path, 'w') as file:
@@ -182,8 +202,20 @@ def delete_account():
 def add_account():
     print()
     print(f"{'-'*30}  'Add Account Section' {'-'*30}  ")
-    new_username = input("Enter new GitHub username: ")
-    new_email = input("Enter new GitHub email: ")
+    while True:
+        new_username = input("Enter new GitHub username: ").strip()
+        if new_username:
+            break
+        else:
+            print("Username cannot be empty. Please try again.")
+
+    # Get email input with validation
+    while True:
+        new_email = input("Enter new GitHub email (must end with @gmail.com): ").strip()
+        if new_email.endswith('@gmail.com'):
+            break
+        else:
+            print("Invalid email format. Please enter an email ending with @gmail.com.")
     accounts.append({"username": new_username, "email": new_email})
     with open(accounts_file_path, 'w') as file:
         json.dump({"accounts": accounts}, file)
@@ -197,7 +229,7 @@ def return_to_main_menu():
 signal.signal(signal.SIGINT, signal_handler)
 
 # Load or create accounts from JSON file
-accounts_file_path = os.path.expanduser('~/github_change_accounts/accounts.json')
+accounts_file_path = os.path.expanduser('~/make_easy_git/accounts.json')
 if not os.path.exists(accounts_file_path):
     os.makedirs(os.path.dirname(accounts_file_path), exist_ok=True)
     with open(accounts_file_path, 'w') as file:

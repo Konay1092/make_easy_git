@@ -52,22 +52,22 @@ Or
 
 ## Screenshots
 **Main Menu**
-![App Screenshot](https://lh3.google.com/u/0/d/1LC0HuobZWURcRWWqNALsgSkyjXyd4P0m)
+![App Screenshot](https://drive.google.com/uc?id=1LC0HuobZWURcRWWqNALsgSkyjXyd4P0m)
 
 **Add Account**
-![App Screenshot](https://lh3.google.com/u/0/d/18wZ2H1DCJr4ZYGsnxkhaLW1ij3pz_tzB)
+![App Screenshot](https://drive.google.com/uc?id=18wZ2H1DCJr4ZYGsnxkhaLW1ij3pz_tzB)
 
 **Change Account**
-![App Screenshot](https://lh3.google.com/u/0/d/1c3GPivoPzJzcuyHLoTvyU-iuIceg6siE)
+![App Screenshot](https://drive.google.com/uc?id=1c3GPivoPzJzcuyHLoTvyU-iuIceg6siE)
 
 **Update Account**
-![App Screenshot](https://lh3.google.com/u/0/d/15XRfSi0gMvf4LZkwwNNlF5riTFsvaJNT)
+![App Screenshot](https://drive.google.com/uc?id=15XRfSi0gMvf4LZkwwNNlF5riTFsvaJNT)
 
 **Delete Account**
-![App Screenshot](https://lh3.google.com/u/0/d/1GiSRyUI3_sRj-HDltwG-bxqTQcl_tAen)
+![App Screenshot](https://drive.google.com/uc?id=1GiSRyUI3_sRj-HDltwG-bxqTQcl_tAen)
 
 **SSH Generate**
-![App Screenshot](https://lh3.google.com/u/0/d/1jhfgHkxzzfFXzYo2f5H610bxeOvS5aKc)
+![App Screenshot](https://drive.google.com/uc?id=1jhfgHkxzzfFXzYo2f5H610bxeOvS5aKc)
 
 
 ## Authors
